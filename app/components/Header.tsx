@@ -45,27 +45,33 @@ export default function Header() {
   };
 
   return (
-    <Box as='nav' bg="white" boxShadow="md">
-      <Flex maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
+    <Box as="header" bg="white" boxShadow="md">
+      <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
         <Box>
           <Image src={logo} alt="Logo" width={125} height={50} />
         </Box>
-        <Flex display={{ base: 'none', md: 'flex' }} align="center" flex="1" justify="flex-end">
-          <Link href="#" ml={4} {...linkStyles}>
-            Home
-          </Link>
-          <Link href="#" ml={4} {...linkStyles}>
-            ONGs
-          </Link>
-          <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />} ml={4}>
-              Redes Sociales
-            </MenuButton>
-            <MenuList>
-              <MenuItem>Instagram</MenuItem>
-              <MenuItem>LinkedIn</MenuItem>
-            </MenuList>
-          </Menu>
+        <Flex as="ul" display={{ base: 'none', md: 'flex' }} align="center" flex="1" justify="flex-end" listStyleType="none" m={0} p={0}>
+          <Box as="li" ml={4}>
+            <Link href="#" {...linkStyles}>
+              Home
+            </Link>
+          </Box>
+          <Box as="li" ml={4}>
+            <Link href="#" {...linkStyles}>
+              ONGs
+            </Link>
+          </Box>
+          <Box as="li" ml={4}>
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                Redes Sociales
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Instagram</MenuItem>
+                <MenuItem>LinkedIn</MenuItem>
+              </MenuList>
+            </Menu>
+          </Box>
         </Flex>
 
         <Box display={{ base: 'flex', md: 'none' }} onClick={onOpen}>
@@ -79,12 +85,18 @@ export default function Header() {
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
           <DrawerBody>
-            <Link href="#" w="100%" mb={4} {...linkStylesMobile}>
-              Home
-            </Link>
-            <Link href="#" w="100%" mb={4} {...linkStylesMobile}>
-              ONGs
-            </Link>
+            <Box as="ul" listStyleType="none" m={0} p={0}>
+              <Box as="li" mb={4}>
+                <Link href="#" w="100%" {...linkStylesMobile}>
+                  Home
+                </Link>
+              </Box>
+              <Box as="li" mb={4}>
+                <Link href="#" w="100%" {...linkStylesMobile}>
+                  ONGs
+                </Link>
+              </Box>
+            </Box>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
