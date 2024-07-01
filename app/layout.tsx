@@ -1,8 +1,8 @@
-// app/layout.tsx
 import { ReactNode } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import theme from '../theme';
 import './globals.css';
 
 interface RootLayoutProps {
@@ -20,10 +20,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
           <Header />
           <main>{children}</main>
           <Footer />
