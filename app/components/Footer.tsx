@@ -98,7 +98,7 @@ export default function Footer() {
               <NextLink href="#" passHref>Terms of Service</NextLink>
             </Box>
           </Box>
-          <Text mt={2}>&copy; 2024 My Company</Text>
+          <Text mt={2}>&copy; 2024 WeCann</Text>
         </Box>
       </Flex>
     </Box>
