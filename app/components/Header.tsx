@@ -1,7 +1,22 @@
 "use client";
-import { Box, Flex, Link, Button, Menu, MenuButton, MenuList, MenuItem, Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useDisclosure } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import logo from '../../public/brand/WeCann.png';
 
 export default function Header() {
@@ -41,34 +56,34 @@ export default function Header() {
       textDecoration: 'none',
       color: '#00BF30',
       transition: 'color 0.3s ease-in-out',
-    }
+    },
   };
 
   return (
     <Box as="header" bg="white" boxShadow="md">
       <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
-        <Box>
-          <Image src={logo} alt="Logo" width={125} height={50} />
-        </Box>
+        <NextLink href="/" passHref>
+          <Image src={logo} alt="WeCann: Innovación y redes para la industria del cannabis en Argentina." priority/>
+        </NextLink>
         <Flex as="ul" display={{ base: 'none', md: 'flex' }} align="center" flex="1" justify="flex-end" listStyleType="none" m={0} p={0}>
           <Box as="li" ml={4}>
-            <Link href="#" {...linkStyles}>
-              Home
-            </Link>
+            <NextLink href="/" passHref>
+              <Box {...linkStyles}>Home</Box>
+            </NextLink>
           </Box>
           <Box as="li" ml={4}>
-            <Link href="#" {...linkStyles}>
-              ONGs
-            </Link>
+            <NextLink href="/ongs" passHref>
+              <Box {...linkStyles}>ONGs</Box>
+            </NextLink>
           </Box>
           <Box as="li" ml={4}>
             <Menu>
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                Redes Sociales
+              <MenuButton {...linkStyles}>
+                Redes Sociales <ChevronDownIcon ml={2} />
               </MenuButton>
               <MenuList>
-                <MenuItem>Instagram</MenuItem>
-                <MenuItem>LinkedIn</MenuItem>
+                <MenuItem as="a" href="https://www.instagram.com">Instagram</MenuItem>
+                <MenuItem as="a" href="https://www.linkedin.com">LinkedIn</MenuItem>
               </MenuList>
             </Menu>
           </Box>
@@ -87,14 +102,14 @@ export default function Header() {
           <DrawerBody>
             <Box as="ul" listStyleType="none" m={0} p={0}>
               <Box as="li" mb={4}>
-                <Link href="#" w="100%" {...linkStylesMobile}>
-                  Home
-                </Link>
+                <NextLink href="/" passHref>
+                  <Box {...linkStylesMobile}>Home</Box>
+                </NextLink>
               </Box>
               <Box as="li" mb={4}>
-                <Link href="#" w="100%" {...linkStylesMobile}>
-                  ONGs
-                </Link>
+                <NextLink href="/ongs" passHref>
+                  <Box {...linkStylesMobile}>ONGs</Box>
+                </NextLink>
               </Box>
             </Box>
           </DrawerBody>
