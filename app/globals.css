@@ -27,14 +27,25 @@
   background-size: cover;
   background-position: center;
   opacity: 0; /* Inicialmente invisible */
-  transform: translateX(-100%); /* Inicialmente desplazado a la izquierda */
-  animation: fadeInLeft 1s forwards; /* Animación de fade-in desde la izquierda */
+  animation: fadeInLeft 2s forwards; /* Animación de fade-in desde la izquierda */
+}
+
+@media (max-width: 1050px) {
+  #bienvenidos {
+    background-image: url('../public/brand/WeCann Portada Mobile 1920x1080.jpg');
+  }
+}
+
+@media (max-width: 768px) {
+  #bienvenidos {
+    background-image: none;
+    background-color: #00BF30;
+  }
 }
 
 @keyframes fadeInLeft {
   to {
     opacity: 1; /* Final de la animación, completamente visible */
-    transform: translateX(0); /* Final de la animación, en su posición original */
   }
 }
 
@@ -50,4 +61,29 @@
 #bienvenidos .nuestraMision:hover{
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
   background: linear-gradient(120deg, #20BF30, #00BF30); /* Degradado de dos colores */
+}
+
+#leaf-animation {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: swingLeaf 2s forwards;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+@keyframes swingLeaf {
+  0% {
+    transform: translate(-50%, -50%) translateX(-100%) rotate(-30deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) translateX(0%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(100%) rotate(30deg);
+    opacity: 0;
+  }
 }

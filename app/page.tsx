@@ -15,7 +15,7 @@ export default function Home() {
         id="bienvenidos" // Agregar ID para estilos CSS
         justify={{ base: 'center', md: 'flex-start' }} // Centramos en móvil, a la izquierda en desktop
         align="center"
-        padding="10px"
+        padding="50px"
         wrap="wrap"
         direction="row"
         minH="100vh"
