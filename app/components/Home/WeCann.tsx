@@ -2,34 +2,37 @@
 import {
   Box, 
   Flex, 
-  Link, 
   Text, 
-  Icon 
+  Button 
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import Image from 'next/image';
-import logo from '../../../public/brand/WeCann White.png'; // Ajusta la ruta según tu estructura de carpetas
 
 export default function WeCann() {
   return (
     <Flex 
-      as="section" 
-      maxW="7xl" 
-      mx="auto" 
-      justify="space-between" 
-      flexWrap="wrap" 
-      direction={{ base: 'column', md: 'row' }}
-      minH="100vh" // Asegura que el Flex ocupe al menos el 100vh
-      align="center"
+      as="div" 
+      direction="column" 
+      align={{ base: 'center', md: 'flex-start' }} // Centrado en móvil, a la izquierda en desktop
+      maxW="7xl"
+      w="100%"
     >
-      <Box flex="1" mb={4} px={4} textAlign="center">
+      <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
+        <Text as={'h1'} color={'white'} className="text-4xl font-bold">Sistema para ONGs y Personas Usuarias del Reprocann</Text>
       </Box>
 
-      <Box flex="1" mb={4} px={4} textAlign="center">
-        <Text className="text-4xl font-bold">WeCann</Text>
+      <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
+        <Text color={'white'} as={'p'}>En <strong>WeCann</strong> estamos construyendo soluciones para la <strong>industria del cannabis</strong> en <strong>Argentina</strong> a través de la digitalización y la innovación. Nuestra misión es modernizar y optimizar los procesos de la industria cannábica, conectando de manera efectiva a las <strong>ONGs</strong>, las personas usuarias del <strong>Reprocann</strong> y todos los actores involucrados.</Text>
       </Box>
 
-      <Box flex="1" mb={4} px={4} textAlign="center">
+      <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
+        <Button 
+        className='nuestraMision' 
+        as={NextLink} 
+        href="/nuestra-mision" 
+        colorScheme="brand" 
+        w={{ base: '100%', md: 'auto' }}>
+          Conocé nuestro Roadmap
+        </Button>
       </Box>
     </Flex>
   );

@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -17,10 +18,33 @@ import {
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import logo from '../../public/brand/WeCann.png';
+import WeCannLogoBlanco from '../../public/brand/WeCann White.png';
+import WeCannLogo from '../../public/brand/WeCann.png';
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [bgColor, setBgColor] = useState('transparent');
+  const [showLogo, setShowLogo] = useState(false); 
+  const [boxShadow, setBoxShadow] = useState('');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setBgColor('white');
+        setShowLogo(true);
+        setBoxShadow('md');
+      } else {
+        setBgColor('transparent');
+        setShowLogo(false);
+        setBoxShadow('');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const linkStyles = {
     display: 'flex',
@@ -60,10 +84,14 @@ export default function Header() {
   };
 
   return (
-    <Box as="header" bg="white" boxShadow="md">
+    <Box as="header" position="fixed" top="0" width="100%" bg={bgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
       <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
         <NextLink href="/" passHref>
-          <Image src={logo} alt="WeCann: Innovación y redes para la industria del cannabis en Argentina." priority/>
+          <Box display="flex" alignItems="center">
+            {showLogo && (
+              <Image src={WeCannLogo} alt="WeCann: Innovación y redes para la industria del cannabis en Argentina." priority />
+            )}
+          </Box>
         </NextLink>
         <Flex as="ul" display={{ base: 'none', md: 'flex' }} align="center" flex="1" justify="flex-end" listStyleType="none" m={0} p={0}>
           <Box as="li" ml={4}>

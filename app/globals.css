@@ -21,3 +21,33 @@
     text-wrap: balance;
   }
 }
+
+#bienvenidos {
+  background-image: url('../public/brand/WeCann Portada.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0; /* Inicialmente invisible */
+  transform: translateX(-100%); /* Inicialmente desplazado a la izquierda */
+  animation: fadeInLeft 1s forwards; /* Animación de fade-in desde la izquierda */
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1; /* Final de la animación, completamente visible */
+    transform: translateX(0); /* Final de la animación, en su posición original */
+  }
+}
+
+
+#bienvenidos .nuestraMision{
+  border: solid .5px rgba(255, 255, 255, .5);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background: linear-gradient(120deg, #00BF30, #20BF30); /* Degradado de dos colores */
+}
+
+#bienvenidos .nuestraMision:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  background: linear-gradient(120deg, #20BF30, #00BF30); /* Degradado de dos colores */
+}
