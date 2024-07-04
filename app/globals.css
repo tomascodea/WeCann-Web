@@ -47,20 +47,30 @@
   }
 }
 
-.horizontal-scroll-section {
-  display: flex;
-  height: 100vh;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-  scroll-snap-type: x mandatory;
+.scroll-section-outer {
+  overflow: hidden;
+  position: relative;
 }
 
-.scroll-item {
-  flex: none; /* Prevent flex-grow */
-  width: 100vw; /* Each item takes full viewport width */
+.scroll-section-inner {
   height: 100vh;
+  width: 400vw; /* 4 sections, so width is 4 * 100vw */
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  position: relative;
+}
+
+.scroll-section {
+  height: 100vh;
+  width: 100vw; /* Each section takes full viewport width */
+  display: flex;
   justify-content: center;
-  font-size: 24px;
-  scroll-snap-align: start; /* Align items to start */
+  align-items: center;
+}
+
+.scroll-section h3 {
+  color: var(--primaryTextColor);
+  letter-spacing: var(--headlineMedium);
+  font-size: var(--headlineMedium);
+  text-transform: uppercase;
 }

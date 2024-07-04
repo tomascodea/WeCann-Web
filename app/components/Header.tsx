@@ -19,6 +19,7 @@ import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import WeCannLogo from '../../public/brand/WeCann.png';
+import WeCannLogoWhite from '../../public/brand/WeCann White.png';
 import Leaf from '../../public/assets/leaf.png'; 
 import { usePathname } from 'next/navigation';
 

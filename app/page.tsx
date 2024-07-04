@@ -5,7 +5,7 @@ import WeCann from './components/Home/WeCann';
 import { Flex } from '@chakra-ui/react';
 import styles from './styles/Home.module.css';
 import Head from 'next/head';
-import ScrollSection from './components/ScrollSection';
+import ScrollSection from './components/Home/ScrollSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
