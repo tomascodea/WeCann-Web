@@ -6,6 +6,7 @@ import {
   Button 
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import styles from '../../styles/Home.module.css';
 
 export default function WeCann() {
   return (
@@ -17,7 +18,7 @@ export default function WeCann() {
       w="100%"
     >
       <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
-        <Text as={'h1'} color={'white'} className="text-4xl font-bold">Sistema para ONGs y Personas Usuarias del Reprocann</Text>
+        <Text as={'h1'} color={'white'} className="text-4xl font-bold">Plataforma para ONGs y Personas Usuarias del Reprocann</Text>
       </Box>
 
       <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
@@ -26,7 +27,7 @@ export default function WeCann() {
 
       <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
         <Button 
-        className='nuestraMision' 
+        className={styles.nuestraMision} 
         as={NextLink} 
         href="/nuestra-mision" 
         colorScheme="brand" 

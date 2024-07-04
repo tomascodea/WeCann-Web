@@ -22,47 +22,6 @@
   }
 }
 
-#bienvenidos {
-  background-image: url('../public/brand/WeCann Portada.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0; /* Inicialmente invisible */
-  animation: fadeInLeft 2s forwards; /* Animación de fade-in desde la izquierda */
-}
-
-@media (max-width: 1050px) {
-  #bienvenidos {
-    background-image: url('../public/brand/WeCann Portada Mobile 1920x1080.jpg');
-  }
-}
-
-@media (max-width: 768px) {
-  #bienvenidos {
-    background-image: none;
-    background-color: #00BF30;
-  }
-}
-
-@keyframes fadeInLeft {
-  to {
-    opacity: 1; /* Final de la animación, completamente visible */
-  }
-}
-
-
-#bienvenidos .nuestraMision{
-  border: solid .5px rgba(255, 255, 255, .5);
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  background: linear-gradient(120deg, #00BF30, #20BF30); /* Degradado de dos colores */
-}
-
-#bienvenidos .nuestraMision:hover{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-  background: linear-gradient(120deg, #20BF30, #00BF30); /* Degradado de dos colores */
-}
-
 #leaf-animation {
   position: fixed;
   top: 50%;
@@ -86,4 +45,22 @@
     transform: translate(-50%, -50%) translateX(100%) rotate(30deg);
     opacity: 0;
   }
+}
+
+.horizontal-scroll-section {
+  display: flex;
+  height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-item {
+  flex: none; /* Prevent flex-grow */
+  width: 100vw; /* Each item takes full viewport width */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  scroll-snap-align: start; /* Align items to start */
 }

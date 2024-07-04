@@ -20,6 +20,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import WeCannLogo from '../../public/brand/WeCann.png';
 import Leaf from '../../public/assets/leaf.png'; 
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,6 +28,7 @@ export default function Header() {
   const [showLogo, setShowLogo] = useState(false);
   const [boxShadow, setBoxShadow] = useState('');
   const [iconMenu, setIconMenu] = useState('white');
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,11 +45,20 @@ export default function Header() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    if (pathname === '/') {
+      window.addEventListener('scroll', handleScroll);
+      // Asegurarse de verificar la posición de desplazamiento al montar el componente
+      handleScroll();
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    } else {
+      setBgColor('white');
+      setShowLogo(true);
+      setBoxShadow('md');
+      setIconMenu('black');
+    }
+  }, [pathname]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -99,9 +110,11 @@ export default function Header() {
 
   return (
     <>
-      <div id="leaf-animation">
-        <Image src={Leaf} alt="Leaf" priority />
-      </div>
+      {pathname === '/' && (
+        <div id="leaf-animation">
+          <Image src={Leaf} alt="Leaf" priority />
+        </div>
+      )}
       <Box as="header" position="fixed" top="0" width="100%" bg={bgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
         <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
           <NextLink href="/" passHref>
@@ -162,6 +175,8 @@ export default function Header() {
           </DrawerContent>
         </Drawer>
       </Box>
+      {/* Margen superior condicional */}
+      {pathname !== '/' && <Box h="16" />}
     </>
   );
 }
