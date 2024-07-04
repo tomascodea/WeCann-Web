@@ -23,9 +23,14 @@ import WeCannLogoWhite from '../../public/brand/WeCann White.png';
 import Leaf from '../../public/assets/leaf.png'; 
 import { usePathname } from 'next/navigation';
 
-export default function Header() {
+interface HeaderProps {
+  bgColor: string;
+  showWhiteLogo: boolean;
+  color: string;
+}
+
+export default function Header({ bgColor, showWhiteLogo, color }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [bgColor, setBgColor] = useState('transparent');
   const [showLogo, setShowLogo] = useState(false);
   const [boxShadow, setBoxShadow] = useState('');
   const [iconMenu, setIconMenu] = useState('white');
@@ -33,28 +38,24 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setBgColor('white');
-        setShowLogo(true);
-        setBoxShadow('md');
-        setIconMenu('black');
-      } else {
-        setBgColor('transparent');
+      if (window.scrollY === 0) {
         setShowLogo(false);
         setBoxShadow('');
         setIconMenu('white');
+      } else {
+        setShowLogo(true);
+        setBoxShadow('md');
+        setIconMenu('black');
       }
     };
 
     if (pathname === '/') {
       window.addEventListener('scroll', handleScroll);
-      // Asegurarse de verificar la posición de desplazamiento al montar el componente
       handleScroll();
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
     } else {
-      setBgColor('white');
       setShowLogo(true);
       setBoxShadow('md');
       setIconMenu('black');
@@ -67,7 +68,7 @@ export default function Header() {
       if (leafAnimationElement) {
         leafAnimationElement.style.display = 'none';
       }
-    }, 2000); // Duración de la animación
+    }, 2000);
   
     return () => clearTimeout(timer);
   }, []);
@@ -78,6 +79,7 @@ export default function Header() {
     position: 'relative' as const,
     paddingBottom: '4px',
     height: 'full',
+    color: color,
     _hover: {
       textDecoration: 'none',
       _after: {
@@ -102,6 +104,7 @@ export default function Header() {
     position: 'relative' as const,
     paddingBottom: '4px',
     fontWeight: 'bold',
+    color: color,
     _hover: {
       textDecoration: 'none',
       color: '#00BF30',
@@ -121,7 +124,7 @@ export default function Header() {
           <NextLink href="/" passHref>
             <Box display="flex" alignItems="center">
               {showLogo && (
-                <Image src={WeCannLogo} alt="WeCann: Innovación y redes para la industria del cannabis en Argentina." priority />
+                <Image src={showWhiteLogo ? WeCannLogoWhite : WeCannLogo} alt="WeCann: Innovación y redes para la industria del cannabis en Argentina." priority />
               )}
             </Box>
           </NextLink>
@@ -176,7 +179,6 @@ export default function Header() {
           </DrawerContent>
         </Drawer>
       </Box>
-      {/* Margen superior condicional */}
       {pathname !== '/' && <Box h="16" />}
     </>
   );

@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -24,6 +25,18 @@ const ScrollSection: React.FC = () => {
           end: "+=400%", // Ajustar el final para mejor precisión
           scrub: 1.5, // Ajuste de scrub para suavizar
           pin: true,
+          onEnter: () => {
+            const event = new Event('scrollSectionEnter');
+            window.dispatchEvent(event);
+          },
+          onLeaveBack: () => {
+            const event = new Event('scrollSectionLeave');
+            window.dispatchEvent(event);
+          },
+          onLeave: () => {
+            const event = new Event('scrollSectionLeave');
+            window.dispatchEvent(event);
+          }
         },
       }
     );
@@ -34,7 +47,7 @@ const ScrollSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="scroll-section-outer">
+    <section id="horizontal-section" className="scroll-section-outer">
       <div ref={triggerRef}>
         <div ref={sectionRef} className="scroll-section-inner">
           <div className="scroll-section">
