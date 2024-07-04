@@ -119,7 +119,7 @@ export default function Header({ bgColor, showWhiteLogo, color }: HeaderProps) {
           <Image src={Leaf} alt="Leaf" priority />
         </div>
       )}
-      <Box as="header" position="fixed" top="0" width="100%" bg={bgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
+      <Box as="header" id='header' position="fixed" top="0" width="100%" bg={bgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
         <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
           <NextLink href="/" passHref>
             <Box display="flex" alignItems="center">

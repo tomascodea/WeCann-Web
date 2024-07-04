@@ -47,30 +47,6 @@
   }
 }
 
-.scroll-section-outer {
-  overflow: hidden;
-  position: relative;
-}
-
-.scroll-section-inner {
-  height: 100vh;
-  width: 400vw; /* 4 sections, so width is 4 * 100vw */
-  display: flex;
-  flex-direction: row;
-  position: relative;
-}
-
-.scroll-section {
-  height: 100vh;
-  width: 100vw; /* Each section takes full viewport width */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.scroll-section h3 {
-  color: var(--primaryTextColor);
-  letter-spacing: var(--headlineMedium);
-  font-size: var(--headlineMedium);
-  text-transform: uppercase;
+body {
+  overflow: hidden; /* Inicialmente deshabilitamos el scroll */
 }

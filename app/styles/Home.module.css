@@ -1,10 +1,9 @@
-/* Estilos adicionales */
 #bienvenidos {
   background-image: url('../../public/brand/WeCann Portada.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0;
-  animation: fadeInLeft 2s forwards;
+  animation: fadeInLeft .5s forwards;
 }
 
 @media (max-width: 1050px) {
@@ -36,6 +35,34 @@
 #bienvenidos .nuestraMision:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
   background: linear-gradient(120deg, #20BF30, #00BF30);
+}
+
+.scroll-section-outer {
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-section-inner {
+  height: 100vh;
+  width: 400vw; /* 4 sections, so width is 4 * 100vw */
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.scroll-section {
+  height: 100vh;
+  width: 100vw; /* Each section takes full viewport width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-section h3 {
+  color: var(--primaryTextColor);
+  letter-spacing: var(--headlineMedium);
+  font-size: var(--headlineMedium);
+  text-transform: uppercase;
 }
 
 .scroll-section-outer {
