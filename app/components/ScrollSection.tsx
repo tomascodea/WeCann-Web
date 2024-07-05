@@ -4,6 +4,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Geneticas from "./Home/Geneticas";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -74,7 +75,7 @@ const ScrollSection: React.FC = () => {
       <Box ref={triggerRef} width="400%">
         <Flex ref={sectionRef} css={scrollSectionInner}>
           <Box css={scrollSection}>
-            <Text fontSize="2xl" fontWeight="bold">Section 1</Text>
+            <Geneticas/>
           </Box>
           <Box css={scrollSection}>
             <Text fontSize="2xl" fontWeight="bold">Section 2</Text>
