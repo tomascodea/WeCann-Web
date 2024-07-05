@@ -23,6 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const [headerBgColor, setHeaderBgColor] = useState(pathname === '/' ? 'transparent' : 'white');
   const [showWhiteLogo, setShowWhiteLogo] = useState(false);
   const [color, setColor] = useState('black');
+  const [iconMenuColor, setIconMenuColor] = useState('white'); // Nuevo estado
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
@@ -53,11 +54,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     if (pathname === '/') {
       setHeaderBgColor('transparent');
       setColor('black');
+      setIconMenuColor('white'); // Cambiar a blanco en la página principal
       setShowWhiteLogo(false);
       window.scrollTo(0, 0); // Forzar el scroll al tope
     } else {
       setHeaderBgColor('white');
       setColor('black');
+      setIconMenuColor('black'); // Cambiar a negro en otras páginas
       setShowWhiteLogo(false);
     }
 
@@ -71,22 +74,27 @@ export default function RootLayout({ children }: RootLayoutProps) {
         if (windowScrollY === 0 && pathname === '/') {
           setHeaderBgColor('transparent');
           setColor('black');
+          setIconMenuColor('white');
           setShowWhiteLogo(false);
         } else if (windowScrollY === 0 && pathname !== '/') {
           setHeaderBgColor('white');
           setColor('black');
+          setIconMenuColor('black');
           setShowWhiteLogo(false);
         } else if (windowScrollY > 0 && windowScrollY < sectionTop) {
           setHeaderBgColor('white');
           setColor('black');
+          setIconMenuColor('black');
           setShowWhiteLogo(false);
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
           setHeaderBgColor('#00BF30');
           setColor('white');
+          setIconMenuColor('white');
           setShowWhiteLogo(true);
         } else if (windowScrollY >= sectionTop + sectionHeight) {
           setHeaderBgColor('white');
           setColor('black');
+          setIconMenuColor('black');
           setShowWhiteLogo(false);
         }
       }
@@ -97,12 +105,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
     const handleScrollSectionEnter = () => {
       setHeaderBgColor('#00BF30');
       setColor('white');
+      setIconMenuColor('white');
       setShowWhiteLogo(true);
     };
 
     const handleScrollSectionLeave = () => {
       setHeaderBgColor('white');
       setColor('black');
+      setIconMenuColor('black');
       setShowWhiteLogo(false);
     };
 
@@ -127,7 +137,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <ChakraProvider theme={theme}>
           {pathname !== '/' && !showContent && <Loader />}
-          <Header bgColor={headerBgColor} showWhiteLogo={showWhiteLogo} color={color} />
+          <Header bgColor={headerBgColor} showWhiteLogo={showWhiteLogo} color={color} iconMenuColor={iconMenuColor} />
           <main>{showContent && children}</main>
           {showContent && <Footer />}
         </ChakraProvider>

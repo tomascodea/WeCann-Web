@@ -71,7 +71,7 @@ const ScrollSection: React.FC = () => {
   `;
 
   return (
-    <Box id="horizontal-section" css={scrollSectionOuter}>
+    <Box as="section" id="horizontal-section" css={scrollSectionOuter}>
       <Box ref={triggerRef} width="400%">
         <Flex ref={sectionRef} css={scrollSectionInner}>
           <Box css={scrollSection}>

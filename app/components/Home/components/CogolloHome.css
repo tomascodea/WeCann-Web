@@ -1,0 +1,17 @@
+/* Estilo básico para el cogollo */
+.cogolloHome {
+    animation: pulse 5s infinite;
+}
+
+/* Animación de pulso */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

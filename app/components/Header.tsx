@@ -27,13 +27,13 @@ interface HeaderProps {
   bgColor: string;
   showWhiteLogo: boolean;
   color: string;
+  iconMenuColor: string; // Nuevo prop
 }
 
-export default function Header({ bgColor, showWhiteLogo, color }: HeaderProps) {
+export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showLogo, setShowLogo] = useState(false);
   const [boxShadow, setBoxShadow] = useState('');
-  const [iconMenu, setIconMenu] = useState('white');
   const pathname = usePathname();
 
   useEffect(() => {
@@ -41,11 +41,9 @@ export default function Header({ bgColor, showWhiteLogo, color }: HeaderProps) {
       if (window.scrollY === 0) {
         setShowLogo(false);
         setBoxShadow('');
-        setIconMenu('white');
       } else {
         setShowLogo(true);
         setBoxShadow('md');
-        setIconMenu('black');
       }
     };
 
@@ -58,7 +56,6 @@ export default function Header({ bgColor, showWhiteLogo, color }: HeaderProps) {
     } else {
       setShowLogo(true);
       setBoxShadow('md');
-      setIconMenu('black');
     }
   }, [pathname]);
 
@@ -153,7 +150,7 @@ export default function Header({ bgColor, showWhiteLogo, color }: HeaderProps) {
           </Flex>
 
           <Box display={{ base: 'flex', md: 'none' }} onClick={onOpen}>
-            <HamburgerIcon color={iconMenu} w={6} h={6} />
+            <HamburgerIcon color={iconMenuColor} w={6} h={6} />
           </Box>
         </Flex>
 

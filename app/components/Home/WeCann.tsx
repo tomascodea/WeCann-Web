@@ -11,11 +11,11 @@ import styles from '../../styles/Home.module.css';
 export default function WeCann() {
   return (
     <Flex 
-      as="div" 
-      direction="column" 
-      align={{ base: 'center', md: 'flex-start' }} // Centrado en móvil, a la izquierda en desktop
-      maxW="7xl"
-      w="100%"
+    as="div" 
+    direction="column" 
+    align={{ base: 'center', md: 'flex-start' }} // Centrado en móvil, a la izquierda en desktop
+    maxW="7xl"
+    w="100%"
     >
       <Box mb={4} px={4} textAlign={{ base: 'center', md: 'left' }} maxW="500px" w="100%"> 
         <Text as={'h1'} color={'white'} className="text-4xl font-bold">Plataforma para ONGs y Personas Usuarias del Reprocann</Text>

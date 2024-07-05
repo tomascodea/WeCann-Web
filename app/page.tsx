@@ -1,17 +1,19 @@
 "use client";
+import React, { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import WeCann from './components/Home/WeCann';
 import ScrollSection from './components/ScrollSection';
-import { Flex } from '@chakra-ui/react';
+import InformacionProyecto from './components/Home/InformacionProyecto';
+import { Flex, useMediaQuery } from '@chakra-ui/react';
 import styles from './styles/Home.module.css';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [showContent, setShowContent] = useState(false);
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     // Deshabilitar el scroll al cargar la página
@@ -50,7 +52,7 @@ export default function Home() {
 
       {showContent && (
         <>
-          <ScrollSection />
+          {isMobile ? <InformacionProyecto /> : <ScrollSection />}
         </>
       )}
     </>

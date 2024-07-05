@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Image } from '@chakra-ui/react';
+import './CogolloHome.css'
 
 const CogolloHome: React.FC = () => {
   return (
@@ -9,6 +10,7 @@ const CogolloHome: React.FC = () => {
         src="/assets/cogollo.png" 
         alt="Cogollo" 
         objectFit="contain"
+        className='cogolloHome'
       />
     </Box>
   );
