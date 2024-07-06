@@ -4,7 +4,8 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import Geneticas from "./Home/Geneticas";
+import TecnologiaAplicada from "./Home/TecnologiaAplicada";
+import PersonasUsuarias from "./Home/PersonasUsuarias";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,32 +17,26 @@ const ScrollSection: React.FC = () => {
     const pin = gsap.fromTo(
       sectionRef.current,
       {
-        translateX: 0,
+        x: "0%",
       },
       {
-        translateX: "-300vw",
-        ease: "power1.inOut",
-        duration: 1.5,
+        x: "-300%",
+        ease: "power1.inOut", // Cambié la facilidad para un desplazamiento más suave
         scrollTrigger: {
           trigger: triggerRef.current,
-          start: "top top+=50px",
-          end: "+=400%",
-          scrub: 1.5,
+          start: "top top",
+          end: "400%",
+          scrub: 1.5, // Ajusté scrub a 1.5 segundos para un desplazamiento más suave
           pin: true,
+          anticipatePin: 1,
           onEnter: () => {
-            const event = new Event('scrollSectionEnter');
-            window.dispatchEvent(event);
-            document.body.classList.add('scrollSectionTransition');
+            document.body.classList.add('dark-mode');
           },
           onLeaveBack: () => {
-            const event = new Event('scrollSectionLeave');
-            window.dispatchEvent(event);
-            document.body.classList.remove('scrollSectionTransition');
+            document.body.classList.remove('dark-mode');
           },
           onLeave: () => {
-            const event = new Event('scrollSectionLeave');
-            window.dispatchEvent(event);
-            document.body.classList.remove('scrollSectionTransition');
+            document.body.classList.remove('dark-mode');
           }
         },
       }
@@ -61,8 +56,6 @@ const ScrollSection: React.FC = () => {
     height: 100vh;
     width: 400vw;
     display: flex;
-    flex-direction: row;
-    position: relative;
   `;
 
   const scrollSection = css`
@@ -71,17 +64,18 @@ const ScrollSection: React.FC = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0; // Asegura que no se encoja
   `;
 
   return (
     <Box as="section" id="horizontal-section" css={scrollSectionOuter}>
-      <Box ref={triggerRef} width="400%">
+      <Box ref={triggerRef} width="100%">
         <Flex ref={sectionRef} css={scrollSectionInner}>
           <Box css={scrollSection}>
-            <Geneticas />
+            <TecnologiaAplicada />
           </Box>
           <Box css={scrollSection}>
-            <Text fontSize="2xl" fontWeight="bold">Section 2</Text>
+            <PersonasUsuarias />
           </Box>
           <Box css={scrollSection}>
             <Text fontSize="2xl" fontWeight="bold">Section 3</Text>

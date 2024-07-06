@@ -101,11 +101,33 @@ export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }:
     position: 'relative' as const,
     paddingBottom: '4px',
     fontWeight: 'bold',
-    color: color,
     _hover: {
       textDecoration: 'none',
       color: '#00BF30',
       transition: 'color 0.3s ease-in-out',
+    },
+  };
+
+  const menuButtonStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    color: 'black', // Aquí se establece el color negro para el botón de menú
+    _hover: {
+      textDecoration: 'none',
+      color: 'black',
+      _after: {
+        width: '100%',
+      },
+    },
+    _after: {
+      content: '""',
+      position: 'absolute' as const,
+      top: '40px',
+      left: 0,
+      width: '0',
+      height: '2.5px',
+      bg: '#00BF30',
+      transition: 'width 0.3s ease-in-out',
     },
   };
 
@@ -137,15 +159,9 @@ export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }:
               </NextLink>
             </Box>
             <Box as="li" ml={4}>
-              <Menu>
-                <MenuButton {...linkStyles}>
-                  Redes Sociales <ChevronDownIcon ml={2} />
-                </MenuButton>
-                <MenuList>
-                  <MenuItem as="a" href="https://www.instagram.com">Instagram</MenuItem>
-                  <MenuItem as="a" href="https://www.linkedin.com">LinkedIn</MenuItem>
-                </MenuList>
-              </Menu>
+              <NextLink href="/personas-usuarias" passHref>
+                <Box {...linkStyles}>Personas Usuarias</Box>
+              </NextLink>
             </Box>
           </Flex>
 

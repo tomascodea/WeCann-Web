@@ -1,7 +1,8 @@
 "use client";
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import Geneticas from "../Home/Geneticas";
+import TecnologiaAplicada from "./TecnologiaAplicada";
+import PersonasUsuarias from './PersonasUsuarias';
 
 const informacionProyectoMobile = css`
 `;
@@ -10,16 +11,16 @@ const InformacionProyecto: React.FC = () => {
   return (
     <Box as="section" id="horizontal-section" css={informacionProyectoMobile}>
     <Flex direction="column">
-      <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
-        <Geneticas/>
+      <Box padding={5} mb={10} display="flex" justifyContent="center" alignItems="center">
+        <TecnologiaAplicada/>
       </Box>
-      <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
-        <Text fontSize="2xl" fontWeight="bold">Section 2</Text>
+      <Box padding={5} backgroundColor={'rgba(0, 0, 0, .02)'} mb={10} display="flex" justifyContent="center" alignItems="center">
+        <PersonasUsuarias/>
       </Box>
-      <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
+      <Box mb={10} display="flex" justifyContent="center" alignItems="center">
         <Text fontSize="2xl" fontWeight="bold">Section 3</Text>
       </Box>
-      <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
+      <Box mb={10} display="flex" justifyContent="center" alignItems="center">
         <Text fontSize="2xl" fontWeight="bold">Section 4</Text>
       </Box>
     </Flex>
