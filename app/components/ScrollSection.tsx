@@ -31,14 +31,17 @@ const ScrollSection: React.FC = () => {
           onEnter: () => {
             const event = new Event('scrollSectionEnter');
             window.dispatchEvent(event);
+            document.body.classList.add('scrollSectionTransition');
           },
           onLeaveBack: () => {
             const event = new Event('scrollSectionLeave');
             window.dispatchEvent(event);
+            document.body.classList.remove('scrollSectionTransition');
           },
           onLeave: () => {
             const event = new Event('scrollSectionLeave');
             window.dispatchEvent(event);
+            document.body.classList.remove('scrollSectionTransition');
           }
         },
       }
@@ -75,7 +78,7 @@ const ScrollSection: React.FC = () => {
       <Box ref={triggerRef} width="400%">
         <Flex ref={sectionRef} css={scrollSectionInner}>
           <Box css={scrollSection}>
-            <Geneticas/>
+            <Geneticas />
           </Box>
           <Box css={scrollSection}>
             <Text fontSize="2xl" fontWeight="bold">Section 2</Text>
