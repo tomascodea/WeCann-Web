@@ -10,8 +10,8 @@ const theme = extendTheme({
     },
   },
   fonts: {
-    body: 'Montserrat, sans-serif',
-    heading: 'Montserrat, sans-serif',
+    body: 'Poppins, sans-serif',
+    heading: 'Poppins, sans-serif',
   },
 });
 

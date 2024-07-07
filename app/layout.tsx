@@ -1,4 +1,5 @@
-"use client"; // Esto asegura que el componente sea del lado del cliente
+// pages/_app.tsx
+"use client";
 import { ReactNode, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -6,6 +7,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import theme from '../theme';
+import { IndoorModeProvider } from './context/IndoorModeContext';
 import './globals.css';
 
 interface RootLayoutProps {
@@ -33,14 +35,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
     };
 
     if (pathname !== '/') {
-      // Asegurar que se ejecuta tanto en el evento 'load' como si la página ya está cargada.
       if (document.readyState === 'complete') {
         handleLoad();
       } else {
         window.addEventListener('load', handleLoad);
       }
     } else {
-      // Si estamos en la página principal, mostrar el contenido de inmediato
       setShowContent(true);
     }
 
@@ -50,17 +50,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
   }, [pathname]);
 
   useEffect(() => {
-    // Inicializar el color del header al cambiar de ruta
     if (pathname === '/') {
       setHeaderBgColor('transparent');
       setColor('black');
-      setIconMenuColor('white'); // Cambiar a blanco en la página principal
+      setIconMenuColor('white');
       setShowWhiteLogo(false);
-      window.scrollTo(0, 0); // Forzar el scroll al tope
+      window.scrollTo(0, 0);
     } else {
       setHeaderBgColor('white');
       setColor('black');
-      setIconMenuColor('black'); // Cambiar a negro en otras páginas
+      setIconMenuColor('black');
       setShowWhiteLogo(false);
     }
 
@@ -87,7 +86,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           setIconMenuColor('black');
           setShowWhiteLogo(false);
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('#00BF30');
+          setHeaderBgColor('rgba(128, 0, 128, 0.1)');
           setColor('white');
           setIconMenuColor('white');
           setShowWhiteLogo(true);
@@ -131,15 +130,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
         <ChakraProvider theme={theme}>
-          {pathname !== '/' && !showContent && <Loader />}
-          <Header bgColor={headerBgColor} showWhiteLogo={showWhiteLogo} color={color} iconMenuColor={iconMenuColor} />
-          <main>{showContent && children}</main>
-          {showContent && <Footer />}
+          <IndoorModeProvider>
+            {pathname !== '/' && !showContent && <Loader />}
+            <Header bgColor={headerBgColor} showWhiteLogo={showWhiteLogo} color={color} iconMenuColor={iconMenuColor} />
+            <main>{showContent && children}</main>
+            {showContent && <Footer />}
+          </IndoorModeProvider>
         </ChakraProvider>
       </body>
     </html>

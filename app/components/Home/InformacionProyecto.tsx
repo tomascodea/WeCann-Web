@@ -3,28 +3,50 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import TecnologiaAplicada from "./TecnologiaAplicada";
 import PersonasUsuarias from './PersonasUsuarias';
+import { useEffect, useRef } from 'react';
+import { useIndoorMode } from '../../context/IndoorModeContext';
 
-const informacionProyectoMobile = css`
-`;
+const informacionProyectoMobile = css``;
 
 const InformacionProyecto: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const { setIsIndoorMode } = useIndoorMode();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const windowScrollY = window.scrollY;
+
+        if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
+          setIsIndoorMode(true);
+        } else {
+          setIsIndoorMode(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Verifica el estado inicial
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [setIsIndoorMode]);
+
   return (
-    <Box as="section" id="horizontal-section" css={informacionProyectoMobile}>
-    <Flex direction="column">
-      <Box padding={5} mb={10} display="flex" justifyContent="center" alignItems="center">
-        <TecnologiaAplicada/>
-      </Box>
-      <Box padding={5} backgroundColor={'rgba(0, 0, 0, .02)'} mb={10} display="flex" justifyContent="center" alignItems="center">
-        <PersonasUsuarias/>
-      </Box>
-      <Box mb={10} display="flex" justifyContent="center" alignItems="center">
-        <Text fontSize="2xl" fontWeight="bold">Section 3</Text>
-      </Box>
-      <Box mb={10} display="flex" justifyContent="center" alignItems="center">
-        <Text fontSize="2xl" fontWeight="bold">Section 4</Text>
-      </Box>
-    </Flex>
-  </Box>
+    <Box as="section" id="horizontal-section" ref={sectionRef} css={informacionProyectoMobile}>
+      <Flex direction="column">
+        <Box padding={5} mb={10} display="flex" justifyContent="center" alignItems="center">
+          <TecnologiaAplicada />
+        </Box>
+        <Box padding={5} backgroundColor={'rgba(0, 0, 0, .02)'} mb={10} display="flex" justifyContent="center" alignItems="center">
+          <PersonasUsuarias />
+        </Box>
+      </Flex>
+    </Box>
   );
 }
 

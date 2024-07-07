@@ -26,7 +26,7 @@ export default function Home() {
     setTimeout(() => {
       setShowContent(true);
       document.body.style.overflow = 'auto';
-    }, 2000);
+    }, 500);
   }, []);
 
   return (
