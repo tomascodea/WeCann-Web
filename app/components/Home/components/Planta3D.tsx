@@ -34,12 +34,35 @@ function Model({ url }: ModelProps) {
 }
 
 // Es necesario pre-cargar el modelo para evitar el problema de carga inicial
-useGLTF.preload('/3D/cogollo.gltf');
+useGLTF.preload('/3D/Cogollos/Cogollo_1/cogollo.gltf');
 
 export default function Planta3D() {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const handleMouseDown = () => {
+        canvas.style.cursor = 'grabbing';
+      };
+      const handleMouseUp = () => {
+        canvas.style.cursor = 'grab';
+      };
+
+      canvas.addEventListener('mousedown', handleMouseDown);
+      canvas.addEventListener('mouseup', handleMouseUp);
+
+      return () => {
+        canvas.removeEventListener('mousedown', handleMouseDown);
+        canvas.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, []);
+
   return (
     <Canvas
-      style={{ width: '100%', height: '450px' }}
+      ref={canvasRef}
+      style={{ width: '100%', height: '450px', cursor: 'grab'}}
       camera={{ position: [0, 0, 5], fov: 50 }}
     >
       <ambientLight intensity={0.5} />
