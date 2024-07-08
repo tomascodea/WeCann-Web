@@ -33,7 +33,7 @@ export default function TecnologiaAplicada() {
         color='white'
         borderBottom='solid 1px rgba(0, 0, 0, .1)'
         backgroundColor='#00BF30'>
-        <Text as="h2" fontSize='18px' fontWeight='bold'>Tecnología aplicada a la Industria del Cannabis</Text>
+        <Text as="h2" fontSize='16px' fontWeight='bold'>Tecnología aplicada a la Industria del Cannabis</Text>
       </Box>
 
       <Box mb={{ base: 4, md: 0 }} px={4} textAlign="center" maxW="320px" w="100%" flex='1'>
@@ -45,7 +45,6 @@ export default function TecnologiaAplicada() {
           <strong>WeCann</strong> está diseñado específicamente para que las Organizaciones No Gubernamentales <i>(ONGs)</i> puedan gestionar de manera eficiente sus operaciones dentro del marco legal del <strong>Programa Nacional para el Estudio y la Investigación del Uso Medicinal de la Planta de Cannabis y sus Derivados</strong>. Este programa, establecido por la <strong>Ley 27.350</strong>, regula el acceso y la producción de cannabis medicinal, garantizando el cuidado integral de la salud y facilitando el cultivo controlado por pacientes y ONGs autorizadas en Argentina.
         </Text>
         <Button 
-          mt={5}
           className={styles.legalidadProyecto}
           as={NextLink} 
           href="/legalidad" 

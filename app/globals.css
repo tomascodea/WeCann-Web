@@ -68,7 +68,7 @@ body::before {
       rgba(255, 0, 255, 0.5),
       rgba(255, 255, 255, 0)
     ),
-    url('/backgroundCannabis.jpg');
+    url('/backgroundCannabis.webp');
   background-size: cover; /* Ajusta la imagen de fondo para que cubra toda el área */
   background-repeat: no-repeat;
   background-position: center; /* Centra la imagen de fondo */

@@ -76,7 +76,7 @@ export default function Cogollo3D() {
       <directionalLight position={[5, 5, 5]} intensity={0.5} castShadow />
       <Environment preset="sunset" /> {/* Añade un entorno para mejorar la iluminación global */}
       <Suspense fallback={null}>
-        <Model url="/3D/Cogollos/Cogollo_2/cogollo_2.gltf" />
+        <Model url="/3D/Cogollos/Cogollo_1/cogollo.gltf" />
       </Suspense>
       {!isMobile && <OrbitControls enableZoom={false} />} {/* Deshabilita los controles en móvil */}
       {/* <ContactShadows position={[0, -1.4, 0]} opacity={0.6} scale={10} blur={1} far={1.4} /> */}
