@@ -1,4 +1,3 @@
-// pages/_app.tsx
 "use client";
 import { ReactNode, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -25,7 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const [headerBgColor, setHeaderBgColor] = useState(pathname === '/' ? 'transparent' : 'white');
   const [showWhiteLogo, setShowWhiteLogo] = useState(false);
   const [color, setColor] = useState('black');
-  const [iconMenuColor, setIconMenuColor] = useState('white'); // Nuevo estado
+  const [iconMenuColor, setIconMenuColor] = useState('white');
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
@@ -86,11 +85,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           setIconMenuColor('black');
           setShowWhiteLogo(false);
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('rgba(128, 0, 128, 1)');
+          setHeaderBgColor('rgba(128, 0, 128, .1)');
           setColor('white');
           setIconMenuColor('white');
           setShowWhiteLogo(true);
-        } else if (windowScrollY >= sectionTop + sectionHeight) {
+        } else {
           setHeaderBgColor('white');
           setColor('black');
           setIconMenuColor('black');
@@ -101,27 +100,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
     window.addEventListener('scroll', handleScroll);
 
-    const handleScrollSectionEnter = () => {
-      setHeaderBgColor('#00BF30');
-      setColor('white');
-      setIconMenuColor('white');
-      setShowWhiteLogo(true);
-    };
-
-    const handleScrollSectionLeave = () => {
-      setHeaderBgColor('white');
-      setColor('black');
-      setIconMenuColor('black');
-      setShowWhiteLogo(false);
-    };
-
-    window.addEventListener('scrollSectionEnter', handleScrollSectionEnter);
-    window.addEventListener('scrollSectionLeave', handleScrollSectionLeave);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scrollSectionEnter', handleScrollSectionEnter);
-      window.removeEventListener('scrollSectionLeave', handleScrollSectionLeave);
     };
   }, [pathname]);
 
