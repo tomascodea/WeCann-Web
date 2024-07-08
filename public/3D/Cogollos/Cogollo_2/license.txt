@@ -1,0 +1,11 @@
+Model Information:
+* title:	Alien ATH Nug
+* source:	https://sketchfab.com/3d-models/alien-ath-nug-9ccc3a035632456292e5e603f03369e5
+* author:	jin (https://sketchfab.com/madjin)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Alien ATH Nug" (https://sketchfab.com/3d-models/alien-ath-nug-9ccc3a035632456292e5e603f03369e5) by jin (https://sketchfab.com/madjin) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

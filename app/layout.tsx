@@ -86,7 +86,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           setIconMenuColor('black');
           setShowWhiteLogo(false);
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('rgba(128, 0, 128, 0.1)');
+          setHeaderBgColor('rgba(128, 0, 128, 1)');
           setColor('white');
           setIconMenuColor('white');
           setShowWhiteLogo(true);
