@@ -7,9 +7,9 @@ import {
   Button
 } from '@chakra-ui/react';
 import { motion, useInView } from 'framer-motion';
-import styles from '../../styles/Home.module.css';
+import styles from '../../../../styles/Home.module.css';
 import NextLink from 'next/link';
-import Cogollo3D_2 from './components/Cogollo3D_2';
+import Cogollo3D_2 from '../../components/Cogollo3D_2';
 
 const MotionFlex = motion(Flex);
 

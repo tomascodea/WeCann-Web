@@ -6,7 +6,7 @@ import {
   Button 
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import styles from '../../styles/Home.module.css';
+import styles from '../../../styles/Home.module.css';
 
 export default function WeCann() {
   return (

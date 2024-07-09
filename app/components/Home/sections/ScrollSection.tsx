@@ -4,9 +4,9 @@ import { Box, Flex } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import TecnologiaAplicada from "./Home/TecnologiaAplicada";
-import PersonasUsuarias from "./Home/PersonasUsuarias";
-import { useIndoorMode } from '../context/IndoorModeContext';
+import TecnologiaAplicada from "./components/TecnologiaAplicada";
+import PersonasUsuarias from "./components/PersonasUsuarias";
+import { useIndoorMode } from '../../../context/IndoorModeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 

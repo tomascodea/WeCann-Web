@@ -6,9 +6,9 @@ import {
   Flex,
   Text,
 } from '@chakra-ui/react';
-import styles from '../../styles/Home.module.css';
+import styles from '../../../../styles/Home.module.css';
 import NextLink from 'next/link';
-import Cogollo3D from './components/Cogollo3D';
+import Cogollo3D from '../../components/Cogollo3D';
 
 export default function PersonasUsuarias() {
   return (

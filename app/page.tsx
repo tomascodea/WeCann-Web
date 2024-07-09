@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import WeCann from './components/Home/WeCann';
-import ScrollSection from './components/ScrollSection';
-import InformacionProyecto from './components/Home/InformacionProyecto';
+import WeCann from './components/Home/sections/WeCann';
+import ScrollSection from './components/Home/sections/ScrollSection';
+import InformacionProyecto from './components/Home/sections/mobile/InformacionProyecto';
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import styles from './styles/Home.module.css';
 import Head from 'next/head';

@@ -1,10 +1,10 @@
 "use client";
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
-import TecnologiaAplicada from "./TecnologiaAplicada";
-import PersonasUsuarias from './PersonasUsuarias';
+import TecnologiaAplicada from "../components/TecnologiaAplicada";
+import PersonasUsuarias from '../components/PersonasUsuarias';
 import { useEffect, useRef } from 'react';
-import { useIndoorMode } from '../../context/IndoorModeContext';
+import { useIndoorMode } from '../../../../context/IndoorModeContext';
 
 const informacionProyectoMobile = css``;
 
