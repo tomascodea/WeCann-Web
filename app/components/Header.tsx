@@ -63,7 +63,7 @@ export default function Header() {
           setBoxShadow('md');
           setOpacity(1);
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('rgba(128, 0, 128, .1)');
+          setHeaderBgColor('rgba(128, 0, 128, 1)');
           setColor('white');
           setIconMenuColor('white');
           setShowWhiteLogo(true);

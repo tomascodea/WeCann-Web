@@ -11,11 +11,25 @@ import styles from '../../styles/Home.module.css';
 import NextLink from 'next/link';
 import Cogollo3D_2 from './components/Cogollo3D_2';
 
-const MotionFlex = motion(Flex);
+const MotionFlex = motion(Flex,);
 
 const TecnologiaAplicada = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+
+  const animationVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.8, rotate: -10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 1.5,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <MotionFlex
@@ -30,9 +44,9 @@ const TecnologiaAplicada = () => {
       backgroundColor='rgba(255, 255, 255, .95)'
       boxShadow='rgba(0, 0, 0, 0.15) 0px 5px 15px'
       maxW={{ base: '100%', md: 'auto' }}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={animationVariants}
     >
       <Box 
         display={{ base: 'flex', md: 'none' }}
