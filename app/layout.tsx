@@ -13,7 +13,6 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-// Define metadata fuera del componente
 const metadata = {
   title: 'WeCann: Innovación y redes para la industria del cannabis en Argentina.',
   description: 'Nuestra misión es modernizar y optimizar los procesos de la industria cannábica, conectando de manera efectiva a las ONGs, las personas usuarias del Reprocann y todos los actores involucrados.',
@@ -21,10 +20,6 @@ const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const pathname = usePathname();
-  const [headerBgColor, setHeaderBgColor] = useState(pathname === '/' ? 'transparent' : 'white');
-  const [showWhiteLogo, setShowWhiteLogo] = useState(false);
-  const [color, setColor] = useState('black');
-  const [iconMenuColor, setIconMenuColor] = useState('white');
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
@@ -48,63 +43,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     };
   }, [pathname]);
 
-  useEffect(() => {
-    if (pathname === '/') {
-      setHeaderBgColor('transparent');
-      setColor('black');
-      setIconMenuColor('white');
-      setShowWhiteLogo(false);
-      window.scrollTo(0, 0);
-    } else {
-      setHeaderBgColor('white');
-      setColor('black');
-      setIconMenuColor('black');
-      setShowWhiteLogo(false);
-    }
-
-    const handleScroll = () => {
-      const horizontalSection = document.getElementById('horizontal-section');
-      if (horizontalSection) {
-        const sectionTop = horizontalSection.offsetTop;
-        const sectionHeight = horizontalSection.offsetHeight;
-        const windowScrollY = window.scrollY;
-
-        if (windowScrollY === 0 && pathname === '/') {
-          setHeaderBgColor('transparent');
-          setColor('black');
-          setIconMenuColor('white');
-          setShowWhiteLogo(false);
-        } else if (windowScrollY === 0 && pathname !== '/') {
-          setHeaderBgColor('white');
-          setColor('black');
-          setIconMenuColor('black');
-          setShowWhiteLogo(false);
-        } else if (windowScrollY > 0 && windowScrollY < sectionTop) {
-          setHeaderBgColor('white');
-          setColor('black');
-          setIconMenuColor('black');
-          setShowWhiteLogo(false);
-        } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('rgba(128, 0, 128, .1)');
-          setColor('white');
-          setIconMenuColor('white');
-          setShowWhiteLogo(true);
-        } else {
-          setHeaderBgColor('white');
-          setColor('black');
-          setIconMenuColor('black');
-          setShowWhiteLogo(false);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [pathname]);
-
   return (
     <html lang="es">
       <head>
@@ -117,7 +55,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ChakraProvider theme={theme}>
           <IndoorModeProvider>
             {pathname !== '/' && !showContent && <Loader />}
-            <Header bgColor={headerBgColor} showWhiteLogo={showWhiteLogo} color={color} iconMenuColor={iconMenuColor} />
+            <Header />
             <main>{showContent && children}</main>
             {showContent && <Footer />}
           </IndoorModeProvider>

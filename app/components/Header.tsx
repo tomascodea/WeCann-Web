@@ -23,40 +23,80 @@ import WeCannLogoWhite from '../../public/brand/WeCann White.png';
 import Leaf from '../../public/assets/leaf.png'; 
 import { usePathname } from 'next/navigation';
 
-interface HeaderProps {
-  bgColor: string;
-  showWhiteLogo: boolean;
-  color: string;
-  iconMenuColor: string; // Nuevo prop
-}
+interface HeaderProps {}
 
-export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }: HeaderProps) {
+export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showLogo, setShowLogo] = useState(false);
   const [boxShadow, setBoxShadow] = useState('');
+  const [headerBgColor, setHeaderBgColor] = useState('transparent');
+  const [showWhiteLogo, setShowWhiteLogo] = useState(false);
+  const [color, setColor] = useState('black');
+  const [iconMenuColor, setIconMenuColor] = useState('white');
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setShowLogo(false);
-        setBoxShadow('');
-      } else {
-        setShowLogo(true);
-        setBoxShadow('md');
+      const horizontalSection = document.getElementById('horizontal-section');
+      if (horizontalSection) {
+        const sectionTop = horizontalSection.offsetTop;
+        const sectionHeight = horizontalSection.offsetHeight;
+        const windowScrollY = window.scrollY;
+
+        if (windowScrollY === 0 && pathname === '/') {
+          setHeaderBgColor('transparent');
+          setColor('black');
+          setIconMenuColor('white');
+          setShowWhiteLogo(false);
+          setShowLogo(false);
+          setBoxShadow('');
+        } else if (windowScrollY === 0 && pathname !== '/') {
+          setHeaderBgColor('white');
+          setColor('black');
+          setIconMenuColor('black');
+          setShowWhiteLogo(false);
+          setShowLogo(true);
+          setBoxShadow('md');
+        } else if (windowScrollY > 0 && windowScrollY < sectionTop) {
+          setHeaderBgColor('white');
+          setColor('black');
+          setIconMenuColor('black');
+          setShowWhiteLogo(false);
+          setShowLogo(true);
+          setBoxShadow('md');
+        } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
+          setHeaderBgColor('rgba(128, 0, 128, .1)');
+          setColor('white');
+          setIconMenuColor('white');
+          setShowWhiteLogo(true);
+          setShowLogo(true);
+          setBoxShadow('md');
+        } else {
+          setHeaderBgColor('white');
+          setColor('black');
+          setIconMenuColor('black');
+          setShowWhiteLogo(false);
+          setShowLogo(true);
+          setBoxShadow('md');
+        }
       }
     };
 
     if (pathname === '/') {
       window.addEventListener('scroll', handleScroll);
       handleScroll();
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
     } else {
+      setHeaderBgColor('white');
+      setColor('black');
+      setIconMenuColor('black');
+      setShowWhiteLogo(false);
       setShowLogo(true);
       setBoxShadow('md');
     }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -108,29 +148,6 @@ export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }:
     },
   };
 
-  const menuButtonStyles = {
-    display: 'flex',
-    alignItems: 'center',
-    color: 'black', // Aquí se establece el color negro para el botón de menú
-    _hover: {
-      textDecoration: 'none',
-      color: 'black',
-      _after: {
-        width: '100%',
-      },
-    },
-    _after: {
-      content: '""',
-      position: 'absolute' as const,
-      top: '40px',
-      left: 0,
-      width: '0',
-      height: '2.5px',
-      bg: '#00BF30',
-      transition: 'width 0.3s ease-in-out',
-    },
-  };
-
   return (
     <>
       {pathname === '/' && (
@@ -138,7 +155,7 @@ export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }:
           <Image src={Leaf} alt="Leaf" priority />
         </div>
       )}
-      <Box as="header" id='header' position="fixed" top="0" width="100%" bg={bgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
+      <Box as="header" id='header' position="fixed" top="0" width="100%" bg={headerBgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
         <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
           <NextLink href="/" passHref>
             <Box display="flex" alignItems="center">
@@ -185,6 +202,11 @@ export default function Header({ bgColor, showWhiteLogo, color, iconMenuColor }:
                 <Box as="li" mb={4}>
                   <NextLink href="/ongs" passHref>
                     <Box {...linkStylesMobile}>ONGs</Box>
+                  </NextLink>
+                </Box>
+                <Box as="li" mb={4}>
+                  <NextLink href="/personas-usuarias" passHref>
+                    <Box {...linkStylesMobile}>Personas Usuarias</Box>
                   </NextLink>
                 </Box>
               </Box>
