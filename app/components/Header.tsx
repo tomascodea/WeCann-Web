@@ -3,10 +3,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   Drawer,
   DrawerBody,
   DrawerHeader,
@@ -15,15 +11,13 @@ import {
   DrawerCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
-import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { HamburgerIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import WeCannLogo from '../../public/brand/WeCann.png';
 import WeCannLogoWhite from '../../public/brand/WeCann White.png';
 import Leaf from '../../public/assets/leaf.png'; 
 import { usePathname } from 'next/navigation';
-
-interface HeaderProps {}
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,6 +27,7 @@ export default function Header() {
   const [showWhiteLogo, setShowWhiteLogo] = useState(false);
   const [color, setColor] = useState('black');
   const [iconMenuColor, setIconMenuColor] = useState('white');
+  const [opacity, setOpacity] = useState(0); // Inicializa la opacidad en 0
   const pathname = usePathname();
 
   useEffect(() => {
@@ -50,6 +45,7 @@ export default function Header() {
           setShowWhiteLogo(false);
           setShowLogo(false);
           setBoxShadow('');
+          setOpacity(1);
         } else if (windowScrollY === 0 && pathname !== '/') {
           setHeaderBgColor('white');
           setColor('black');
@@ -57,6 +53,7 @@ export default function Header() {
           setShowWhiteLogo(false);
           setShowLogo(true);
           setBoxShadow('md');
+          setOpacity(1);
         } else if (windowScrollY > 0 && windowScrollY < sectionTop) {
           setHeaderBgColor('white');
           setColor('black');
@@ -64,6 +61,7 @@ export default function Header() {
           setShowWhiteLogo(false);
           setShowLogo(true);
           setBoxShadow('md');
+          setOpacity(1);
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
           setHeaderBgColor('rgba(128, 0, 128, .1)');
           setColor('white');
@@ -71,6 +69,7 @@ export default function Header() {
           setShowWhiteLogo(true);
           setShowLogo(true);
           setBoxShadow('md');
+          setOpacity(0.9); // Cambiar opacidad aquí
         } else {
           setHeaderBgColor('white');
           setColor('black');
@@ -78,6 +77,7 @@ export default function Header() {
           setShowWhiteLogo(false);
           setShowLogo(true);
           setBoxShadow('md');
+          setOpacity(1);
         }
       }
     };
@@ -92,6 +92,7 @@ export default function Header() {
       setShowWhiteLogo(false);
       setShowLogo(true);
       setBoxShadow('md');
+      setOpacity(1);
     }
 
     return () => {
@@ -155,7 +156,7 @@ export default function Header() {
           <Image src={Leaf} alt="Leaf" priority />
         </div>
       )}
-      <Box as="header" id='header' position="fixed" top="0" width="100%" bg={headerBgColor} boxShadow={boxShadow} transition="background-color 0.4s ease" zIndex="1000">
+      <Box as="header" id='header' position="fixed" top="0" width="100%" bg={headerBgColor} boxShadow={boxShadow} opacity={opacity} transition="background-color 0.4s ease, opacity 0.4s ease" zIndex="1000">
         <Flex as="nav" maxW="7xl" mx="auto" px={4} justify="space-between" align="center" h="16">
           <NextLink href="/" passHref>
             <Box display="flex" alignItems="center">

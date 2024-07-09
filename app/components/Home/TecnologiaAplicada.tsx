@@ -1,18 +1,25 @@
-// components/TecnologiaAplicada.tsx
 "use client";
+import React, { useRef } from 'react';
 import {
   Box,
   Flex,
   Text,
   Button
 } from '@chakra-ui/react';
+import { motion, useInView } from 'framer-motion';
 import styles from '../../styles/Home.module.css';
 import NextLink from 'next/link';
 import Cogollo3D_2 from './components/Cogollo3D_2';
 
-export default function TecnologiaAplicada() {
+const MotionFlex = motion(Flex);
+
+const TecnologiaAplicada = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <Flex
+    <MotionFlex
+      ref={ref}
       as="div"
       id='tecnologia-aplicada'
       direction={{ base: 'column', md: 'row' }}
@@ -23,6 +30,9 @@ export default function TecnologiaAplicada() {
       backgroundColor='rgba(255, 255, 255, .95)'
       boxShadow='rgba(0, 0, 0, 0.15) 0px 5px 15px'
       maxW={{ base: '100%', md: 'auto' }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       <Box 
         display={{ base: 'flex', md: 'none' }}
@@ -69,6 +79,8 @@ export default function TecnologiaAplicada() {
           Políticas de Legalidad
         </Button>
       </Box>
-    </Flex>
+    </MotionFlex>
   );
 }
+
+export default TecnologiaAplicada;
