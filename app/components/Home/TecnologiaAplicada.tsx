@@ -11,7 +11,7 @@ import styles from '../../styles/Home.module.css';
 import NextLink from 'next/link';
 import Cogollo3D_2 from './components/Cogollo3D_2';
 
-const MotionFlex = motion(Flex,);
+const MotionFlex = motion(Flex);
 
 const TecnologiaAplicada = () => {
   const ref = useRef(null);

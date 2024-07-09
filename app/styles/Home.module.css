@@ -1,20 +1,37 @@
 #bienvenidos {
+  position: relative;
+  overflow: hidden; /* Asegura que el pseudo-elemento no se desborde */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); /* Añade sombra al texto */
+}
+
+#bienvenidos::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image: url('../../public/brand/WeCann Portada.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0;
   animation: fadeInLeft .35s forwards;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: -1; /* Asegura que el pseudo-elemento esté detrás del contenido */
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 191, 49, 1) 65%, rgba(0, 191, 49, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 191, 49, 1) 65%, rgba(0, 191, 49, 0) 100%);
+  transform: translateY(20px);
 }
 
 @media (max-width: 1050px) {
-  #bienvenidos {
+  #bienvenidos::before {
     background-image: url('../../public/brand/WeCann Portada Mobile 1920x1080.jpg');
   }
 }
 
 @media (max-width: 768px) {
-  #bienvenidos {
+  #bienvenidos::before {
     background-image: none;
     background-color: #00BF30;
   }
@@ -23,14 +40,19 @@
 @keyframes fadeInLeft {
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 #bienvenidos .nuestraMision {
   border: solid 0.5px rgba(255, 255, 255, 0.5);
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  transition-duration: 0.4s;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
   background: linear-gradient(120deg, #00BF30, #20BF30);
+  padding: 1rem;
+  border-radius: 8px;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Añade sombra al texto */
 }
 
 #bienvenidos .nuestraMision:hover {
@@ -38,7 +60,9 @@
   background: linear-gradient(120deg, #20BF30, #00BF30);
 }
 
-.legalidadProyecto{
-  border: solid 1px rgba(0, 0, 0, .5);
+.legalidadProyecto {
+  border: solid 1px rgba(0, 0, 0, 0.5);
   color: black;
+  padding: 1rem;
+  border-radius: 8px;
 }

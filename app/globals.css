@@ -16,9 +16,34 @@
   }
 }
 
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    /* Ancho de la scrollbar */
+    height: 8px;
+    /* Alto de la scrollbar horizontal */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    /* Color del track (fondo) */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 191, 49, 1);
+    /* Color del pulgar */
+    border-radius: 4px;
+    /* Bordes redondeados */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 191, 49, 0.8);
+    /* Color del pulgar en hover */
   }
 }
 
@@ -29,7 +54,8 @@
   transform: translate(-50%, -50%);
   opacity: 0;
   animation: swingLeaf 2s forwards;
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  z-index: 1000;
+  /* Asegúrate de que esté por encima de otros elementos */
 }
 
 @keyframes swingLeaf {
@@ -37,10 +63,12 @@
     transform: translate(-50%, -50%) translateX(-100%) rotate(-30deg);
     opacity: 0;
   }
+
   50% {
     transform: translate(-50%, -50%) translateX(0%) rotate(0deg);
     opacity: 1;
   }
+
   100% {
     transform: translate(-50%, -50%) translateX(100%) rotate(30deg);
     opacity: 0;
@@ -48,11 +76,14 @@
 }
 
 body {
-  overflow: hidden; /* Inicialmente deshabilitamos el scroll */
+  overflow: hidden;
+  /* Inicialmente deshabilitamos el scroll */
   transition: background-color 4s ease, color 0.5s ease;
   position: relative;
-  background-color: white; /* Fondo blanco por defecto */
-  color: black; /* Texto negro por defecto */
+  background-color: white;
+  /* Fondo blanco por defecto */
+  color: black;
+  /* Texto negro por defecto */
 }
 
 body::before {
@@ -62,19 +93,20 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       rgba(128, 0, 128, 0.7),
       rgba(255, 0, 255, 0.5),
-      rgba(255, 255, 255, 0)
-    ),
+      rgba(255, 255, 255, 0)),
     url('/backgroundHorizontalSection.webp');
-  background-size: cover; /* Ajusta la imagen de fondo para que cubra toda el área */
+  background-size: cover;
+  /* Ajusta la imagen de fondo para que cubra toda el área */
   background-repeat: no-repeat;
-  background-position: center; /* Centra la imagen de fondo */
+  background-position: center;
+  /* Centra la imagen de fondo */
   opacity: 0;
   transition: opacity 1.5s ease;
-  z-index: -1; /* Asegura que el contenido esté por encima de la imagen */
+  z-index: -1;
+  /* Asegura que el contenido esté por encima de la imagen */
 }
 
 body.indoor-mode::before {
@@ -82,6 +114,7 @@ body.indoor-mode::before {
 }
 
 body.indoor-mode {
-  background-color: transparent; /* Fondo transparente para mostrar la imagen */
+  background-color: transparent;
+  /* Fondo transparente para mostrar la imagen */
   color: black;
 }

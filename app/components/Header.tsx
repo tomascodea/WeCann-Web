@@ -10,14 +10,17 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Button,
+  Tooltip
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import WeCannLogo from '../../public/brand/WeCann.png';
 import WeCannLogoWhite from '../../public/brand/WeCann White.png';
-import Leaf from '../../public/assets/leaf.png'; 
+import Leaf from '../../public/assets/leaf.png';
 import { usePathname } from 'next/navigation';
+import { GrLogin } from "react-icons/gr";
 
 export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,7 +30,8 @@ export default function Header() {
   const [showWhiteLogo, setShowWhiteLogo] = useState(false);
   const [color, setColor] = useState('black');
   const [iconMenuColor, setIconMenuColor] = useState('white');
-  const [opacity, setOpacity] = useState(0); // Inicializa la opacidad en 0
+  const [opacity, setOpacity] = useState(0);
+  const [showNavbarLinks, setShowNavbarLinks] = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -46,6 +50,7 @@ export default function Header() {
           setShowLogo(false);
           setBoxShadow('');
           setOpacity(1);
+          setShowNavbarLinks(false); // Oculta los enlaces del navbar
         } else if (windowScrollY === 0 && pathname !== '/') {
           setHeaderBgColor('white');
           setColor('black');
@@ -54,6 +59,7 @@ export default function Header() {
           setShowLogo(true);
           setBoxShadow('md');
           setOpacity(1);
+          setShowNavbarLinks(true); // Muestra los enlaces del navbar
         } else if (windowScrollY > 0 && windowScrollY < sectionTop) {
           setHeaderBgColor('white');
           setColor('black');
@@ -62,14 +68,16 @@ export default function Header() {
           setShowLogo(true);
           setBoxShadow('md');
           setOpacity(1);
+          setShowNavbarLinks(true); // Muestra los enlaces del navbar
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('rgba(128, 0, 128, 1)');
+          setHeaderBgColor('rgba(128, 0, 128, .1)');
           setColor('white');
           setIconMenuColor('white');
           setShowWhiteLogo(true);
           setShowLogo(true);
           setBoxShadow('md');
-          setOpacity(0.9); // Cambiar opacidad aquí
+          setOpacity(0.9);
+          setShowNavbarLinks(true); // Muestra los enlaces del navbar
         } else {
           setHeaderBgColor('white');
           setColor('black');
@@ -78,6 +86,7 @@ export default function Header() {
           setShowLogo(true);
           setBoxShadow('md');
           setOpacity(1);
+          setShowNavbarLinks(true); // Muestra los enlaces del navbar
         }
       }
     };
@@ -93,6 +102,7 @@ export default function Header() {
       setShowLogo(true);
       setBoxShadow('md');
       setOpacity(1);
+      setShowNavbarLinks(true); // Muestra los enlaces del navbar
     }
 
     return () => {
@@ -107,7 +117,7 @@ export default function Header() {
         leafAnimationElement.style.display = 'none';
       }
     }, 2000);
-  
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -133,6 +143,21 @@ export default function Header() {
       height: '2.5px',
       bg: '#00BF30',
       transition: 'width 0.3s ease-in-out',
+    },
+  };
+
+  const linkStylesButtons = {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative' as const,
+    paddingBottom: '4px',
+    height: 'full',
+    color: color,
+    _hover: {
+      textDecoration: 'none',
+      _after: {
+        width: '100%',
+      },
     },
   };
 
@@ -165,7 +190,8 @@ export default function Header() {
               )}
             </Box>
           </NextLink>
-          <Flex as="ul" display={{ base: 'none', md: 'flex' }} align="center" flex="1" justify="flex-end" listStyleType="none" m={0} p={0}>
+
+          <Flex as="ul" display={{ base: 'none', md: showNavbarLinks ? 'flex' : 'none' }} align="center" flex="1" justify="flex-end" listStyleType="none" m={0} p={0}>
             <Box as="li" ml={4}>
               <NextLink href="/" passHref>
                 <Box {...linkStyles}>Home</Box>
@@ -179,6 +205,25 @@ export default function Header() {
             <Box as="li" ml={4}>
               <NextLink href="/personas-usuarias" passHref>
                 <Box {...linkStyles}>Personas Usuarias</Box>
+              </NextLink>
+            </Box>
+          </Flex>
+
+          <Flex as="ul" display={{ base: 'none', md: 'flex' }} align="center" flex="1" justify="flex-end" listStyleType="none" m={0} p={0}>
+            <Box as="li" ml={8}>
+              <NextLink href="/login" passHref>
+                <Tooltip
+                  label="Ingresar a WeCann"
+                  fontSize="md"
+                  bg="rgba(0, 191, 49, 1)"
+                  color="white"
+                  borderRadius="md"
+                  placement="left"
+                >
+                  <Box as="span" {...linkStylesButtons} display="flex" alignItems="center">
+                    <GrLogin size={24} />
+                  </Box>
+                </Tooltip>
               </NextLink>
             </Box>
           </Flex>
@@ -208,6 +253,22 @@ export default function Header() {
                 <Box as="li" mb={4}>
                   <NextLink href="/personas-usuarias" passHref>
                     <Box {...linkStylesMobile}>Personas Usuarias</Box>
+                  </NextLink>
+                </Box>
+                <Box as="li">
+                  <NextLink href="/login" passHref>
+                    <Tooltip
+                      label="Ingresar a WeCann"
+                      fontSize="md"
+                      bg="rgba(0, 191, 49, 0.8)"
+                      color="white"
+                      borderRadius="md"
+                      placement="bottom"
+                    >
+                      <Box as="span" {...linkStylesButtons} display="flex" alignItems="center">
+                        <GrLogin size={24} />
+                      </Box>
+                    </Tooltip>
                   </NextLink>
                 </Box>
               </Box>
