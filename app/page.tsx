@@ -8,6 +8,7 @@ import InformacionProyecto from './components/Home/sections/mobile/InformacionPr
 import { Flex, useMediaQuery } from '@chakra-ui/react';
 import styles from './styles/Home.module.css';
 import Head from 'next/head';
+import Conexiones from './components/Home/sections/Conexiones';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,6 +54,7 @@ export default function Home() {
       {showContent && (
         <>
           {isMobile ? <InformacionProyecto /> : <ScrollSection />}
+          <Conexiones />
         </>
       )}
     </>
