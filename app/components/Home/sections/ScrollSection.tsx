@@ -57,15 +57,19 @@ const ScrollSection: React.FC = () => {
         anticipatePin: 1,
         onEnter: () => {
           setIsIndoorMode(true);
+          gsap.to(triggerRef.current, { backgroundColor: "rgba(255, 255, 255, 1)", duration: 1 });
         },
         onLeave: () => {
           setIsIndoorMode(false);
+          gsap.to(triggerRef.current, { backgroundColor: "rgba(255, 255, 255, 0)", duration: 1 });
         },
         onEnterBack: () => {
           setIsIndoorMode(true);
+          gsap.to(triggerRef.current, { backgroundColor: "rgba(255, 255, 255, 1)", duration: 1 });
         },
         onLeaveBack: () => {
           setIsIndoorMode(false);
+          gsap.to(triggerRef.current, { backgroundColor: "rgba(255, 255, 255, 0)", duration: 1 });
         }
       },
     });

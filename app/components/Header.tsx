@@ -70,15 +70,22 @@ export default function Header() {
           setOpacity(1);
           setShowNavbarLinks(true); // Muestra los enlaces del navbar
         } else if (windowScrollY >= sectionTop && windowScrollY < sectionTop + sectionHeight) {
-          setHeaderBgColor('rgba(128, 0, 128, .1)');
-          setColor('white');
-          setIconMenuColor('white');
-          setShowWhiteLogo(true);
+          if (windowScrollY >= sectionTop + (sectionHeight / 2)) {
+              setHeaderBgColor('white');
+              setColor('black');
+              setIconMenuColor('black');
+              setShowWhiteLogo(false); // Cambia el logo a gris (asumiendo que false significa gris)
+          } else {
+              setHeaderBgColor('rgba(128, 0, 128, .1)');
+              setColor('white');
+              setIconMenuColor('white');
+              setShowWhiteLogo(true); // Cambia el logo a blanco
+          }
           setShowLogo(true);
           setBoxShadow('md');
           setOpacity(0.9);
           setShowNavbarLinks(true); // Muestra los enlaces del navbar
-        } else {
+      } else {
           setHeaderBgColor('white');
           setColor('black');
           setIconMenuColor('black');
